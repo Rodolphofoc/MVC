@@ -1,0 +1,68 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Produto</title>
+</head>
+<body>
+
+    <form action="/Produto/Adiciona" method="post">
+        @Html.ValidationMessage("produto.InformaticaComPrecoInvalido")
+        <div>
+            <label for="nome">Nome:</label>
+            <input id="nome" name="produto.Nome" />
+            @Html.ValidationMessage("produto.Nome")
+        </div>
+        <div>
+            <label for="preco">Preço:</label>
+            <input id="preco" name="produto.Preco" />
+        </div>
+        <div>
+            <label for="quantidade">Quantidade:</label>
+            <input id="quantidade" name="produto.Quantidade" />
+        </div>
+        <div>
+            <label for="descricao">Descrição:</label>
+            <input id="descricao" name="produto.Descricao" />
+        </div>
+        <div>
+            <label for="categoria">Categoria:</label>
+            <select id="categoria" name="produto.CategoriaId">
+                @foreach (var categoria in ViewBag.Categorias)
+                {
+                    <option value="@categoria.Id">@categoria.Nome</option>
+                }
+            </select>
+        </div>
+        <div>
+            <input type="submit" />
+        </div>
+    </form>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nome</th>
+                    <th>Quantidade</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var produto in ViewBag.Produtos)
+                {
+                    <tr>
+                        <td>@produto.Id</td>
+                        <td>@produto.Nome</td>
+                        <td>@produto.Quantidade</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
