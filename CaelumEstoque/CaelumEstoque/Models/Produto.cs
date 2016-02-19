@@ -9,7 +9,7 @@ namespace CaelumEstoque.Models
     public class Produto
     {
         public int Id { get; set; }
-
+        [StringLengthAttribute(20)]
         public String Nome { get; set; }
 
         public float Preco { get; set; }
