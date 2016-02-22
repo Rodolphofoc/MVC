@@ -12,14 +12,32 @@ namespace CaelumEstoque.Controllers
     {
         //
         // GET: /Produto/
+
+
+
+        public IList<Produto> Produtos
+        {
+
+            get
+            {
+                if (Session["Produtos"] != null)
+                    return (List<Produto>)Session["Produtos"];
+                else
+                    return null;
+
+            }
+
+            set { Session["Produtos"] = value; }
+        }
+
         public ActionResult Index()
         {
             ProdutosDAO dao = new ProdutosDAO();
-            IList<Produto> produtos = dao.Lista();
+            this.Produtos = dao.Lista();
             CategoriasDAO daoCategoria = new CategoriasDAO();
             IList<CategoriaDoProduto> categorias = daoCategoria.Lista();
             ViewBag.Categorias = categorias;
-            ViewBag.Produtos = produtos;
+            ViewBag.Produtos = Produtos;
             return View();
         }
 
